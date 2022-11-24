@@ -1,4 +1,5 @@
 import Head from "next/head";
+import EventSchedule from "../components/landingPage/EventSchedule";
 import HeroSection from "../components/landingPage/HeroSection";
 import TopBar from "../layout/TopBar";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <div>
         <TopBar />
         <HeroSection />
+        <EventSchedule />
       </div>
     </div>
   );

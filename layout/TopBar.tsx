@@ -9,11 +9,11 @@ const TopBar = () => {
       </div>
       <nav className="tablet:hidden">
         <ul className="flex items-center gap-10 text-lg">
-          <li>About us</li>
-          <li>What We do</li>
-          <li>Our work</li>
-          <li>Blog</li>
-          <li>Say hi</li>
+          <li className="cursor-pointer">About us</li>
+          <li className="cursor-pointer">What We do</li>
+          <li className="cursor-pointer">Our work</li>
+          <li className="cursor-pointer">Blog</li>
+          <li className="cursor-pointer">Say hi</li>
         </ul>
       </nav>
       <FiMenu className="text-2xl cursor-pointer" />
