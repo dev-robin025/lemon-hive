@@ -3,17 +3,21 @@ import client from "../lib/client";
 
 export const getConferences = async () => {
   try {
-    const { data } = await client.query({
+    const { data: conferences } = await client.query({
       query: gql`
-        query conferences {
-          name
-          schedules {
-            day
+        query getConferences {
+          conferences {
+            id
+            name
+            schedules {
+              day
+            }
           }
         }
       `,
     });
-    console.log(data);
+
+    return conferences;
   } catch (error) {
     console.log("conferences fetching error", error);
   }

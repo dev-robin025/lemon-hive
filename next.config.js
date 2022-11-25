@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    GRAPH_CMS_ENDPOINT: "https://api.react-finland.fi",
+    API_ENDPOINT: "https://api.react-finland.fi/graphql",
   },
 };
 

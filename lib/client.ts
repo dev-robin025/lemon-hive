@@ -1,8 +1,13 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+
+const httpLink = createHttpLink({
+  uri: process.env.API_ENDPOINT,
+});
 
 const client = new ApolloClient({
-  uri: process.env.GRAPH_CMS_ENDPOINT,
+  link: httpLink,
   cache: new InMemoryCache(),
+  connectToDevTools: true,
 });
 
 export default client;

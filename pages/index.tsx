@@ -1,9 +1,16 @@
+import { NextPage } from "next";
 import Head from "next/head";
+// import { useQuery } from "react-query";
 import EventSchedule from "../components/landingPage/EventSchedule";
 import HeroSection from "../components/landingPage/HeroSection";
+import Typography from "../components/shared/Typography";
 import TopBar from "../layout/TopBar";
 
-export default function Home() {
+const Home: NextPage = () => {
+  // const { isLoading, data, error } = useQuery("conferences", () => getConferences());
+
+  // console.log(isLoading, data, error);
+
   return (
     <div className="bg-[url('/landing-bg.png')] ">
       <Head>
@@ -12,11 +19,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* {isLoading ? (
+        <div className="h-screen flex items-center justify-center">PLease Wait...</div>
+      ) : ( */}
       <div>
         <TopBar />
         <HeroSection />
-        <EventSchedule />
+        <section className="max-w-[1320px] mx-auto px-40 py-20">
+          <Typography.H2>Event Schedule</Typography.H2>
+          <Typography.H3>
+            Lorem uis diam turpis quam id fermentum.In quis diam turpis quam id fermentum.
+          </Typography.H3>
+          <EventSchedule conferences={[]} />
+        </section>
       </div>
+      {/* )} */}
     </div>
   );
-}
+};
+
+export default Home;
