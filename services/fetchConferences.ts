@@ -9,8 +9,14 @@ export const getConferences = async () => {
           conferences {
             id
             name
+            startDate
+            endDate
             schedules {
               day
+              intervals {
+                begin
+                end
+              }
             }
           }
         }

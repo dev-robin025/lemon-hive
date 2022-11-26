@@ -1,77 +1,77 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import getHours from "../../utils/getHours";
+import getWeek from "../../utils/getWeek";
+import Event from "./Event";
+
+interface IConference {
+  id: String;
+  name: String;
+  startDate: Date;
+  schedules: [
+    {
+      day: Date;
+      intervals: [{ begin: String; end: String }];
+    }
+  ];
+}
 
 interface IProps {
-  conferences: [];
+  conferences: [IConference];
 }
 
 const EventSchedule = ({ conferences }: IProps) => {
-  const [hours, setHours] = useState<moment.Moment[] | undefined>([]);
-
-  const startDay = moment().startOf("day").add(9, "hours");
-  const endDay = startDay.clone().add(11, "hours");
-  const hour = startDay.clone();
-
-  useEffect(() => {
-    getWeek();
-    let res: moment.Moment[] | undefined;
-    while (!hour.isSame(endDay, "hour")) {
-      res = new Array(11).fill(null).map(() => hour.add(1, "hour").clone());
-    }
-
-    setHours(res);
-  }, []);
+  const week: moment.Moment[] = getWeek();
+  const hours: moment.Moment[] = getHours();
 
   return (
-    <div>
-      {/* <div className="grid grid-cols-8 text-center">
-        <span></span>
-        {calendar.map((day, index) => (
-          <span key={index}>{day.format("ddd")}</span>
+    <div className="mt-10">
+      <div className="grid grid-cols-8 text-center border border-b-0 border-[lightgray]">
+        <span className="border-r py-6 border-[lightgray]"></span>
+        {week.map((day, index) => (
+          <span
+            key={index}
+            className="flex items-center justify-center text-xl font-bold text-dark"
+          >
+            {day.format("ddd")}
+          </span>
         ))}
       </div>
 
-      {hourOfDay.map((hour, index) => (
-        <div className="grid grid-cols-8 text-center" key={index}>
-          <span className="border flex justify-center items-center">
-            {hour.format("LT")}
-          </span>
-          {calendar.map((day, index) => (
-            <span key={index} className="border h-12">
-              {event.map(
-                (e) =>
-                  e.date === day.format("DD/MM/YYYY") &&
-                  e.time.split(":")[0] === hour.format("hh") &&
-                  e.name
-              )}
+      <div className="border-b-0 border border-[lightgray]">
+        {hours.map((hour, index) => (
+          <div className="grid grid-cols-8 text-center border-b border-[lightgray]" key={index}>
+            <span className="flex items-center justify-center text-xl font-bold text-dark">
+              {hour.format("HH:mm")}
             </span>
-          ))}
-        </div>
-      ))} */}
+
+            {week.map((day, index) => (
+              <div
+                key={index}
+                className="h-32 border-l border-[lightgray] p-2 flex flex-col overflow-auto overflow-x-hidden gap-2 no-scrollbar"
+              >
+                {conferences.map((con: IConference) =>
+                  con.schedules.map((shd, key) => {
+                    const conDay: String = moment(shd.day).format("ddd");
+                    return (
+                      <Event
+                        id={con.id}
+                        title={con.name}
+                        scheduleDay={conDay}
+                        timeSlot={shd.intervals}
+                        calHour={hour}
+                        calDay={day}
+                        key={key}
+                      />
+                    );
+                  })
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
-const getWeek = () => {
-  let start: moment.Moment = moment().startOf("isoWeek");
-  const end: moment.Moment = moment().endOf("isoWeek");
-
-  console.log("calling...", start.isSame(end));
-
-  let days: moment.Moment[] | undefined;
-
-  while (!start.isSame(end)) {
-    days?.push(start);
-    start.add(1, "day");
-  }
-
-  alert(JSON.stringify(days));
-
-  console.log({ days });
-
-  // for (let i = 0; i < 7; i++) {
-  //   console.log(start.add(i, "day").clone(), i);
-  // }
 };
 
 export default EventSchedule;
