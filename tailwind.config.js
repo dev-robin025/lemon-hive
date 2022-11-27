@@ -15,6 +15,7 @@ module.exports = {
       transparent: "transparent",
       dark: "#0A142F",
       gray: "#0a142e",
+      white: "#ffffff",
     },
     screens: {
       mac: { max: "1536px" },
