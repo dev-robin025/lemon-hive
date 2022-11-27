@@ -36,17 +36,16 @@ const Conference: NextPage = () => {
       ) : (
         <>
           <Typography.H2>Conference info</Typography.H2>
-          <Typography.H3>
-            Lorem uis diam turpis quam id fermentum.In quis diam turpis quam id fermentum.
-          </Typography.H3>
+          <Typography.H3>{data.conference.slogan}</Typography.H3>
           <section className="mt-10 flex gap-10 ">
             <Sidebar setActiveNav={setActiveNav} activeNav={activeNav} />
+
             <div className="flex-1 bg-[url('/con-detail-bg.png')] p-10 rounded-lg tablet:hidden">
-              {activeNav === "speakers" && <Speakers payload={data?.conference?.speakers} />}
-              {activeNav === "organizer" && <Organizer />}
-              {activeNav === "location" && <Locations />}
-              {activeNav === "schedule" && <Schedule />}
-              {activeNav === "sponsors" && <Sponsors />}
+              {activeNav === "speakers" && <Speakers speakers={data?.conference?.speakers} />}
+              {activeNav === "organizer" && <Organizer organizer={data.conference.organizer} />}
+              {activeNav === "location" && <Locations locations={data.conference.locations} />}
+              {activeNav === "schedule" && <Schedule schedules={data.conference.schedules} />}
+              {activeNav === "sponsors" && <Sponsors sponsors={data.conference.sponsors} />}
             </div>
           </section>
         </>

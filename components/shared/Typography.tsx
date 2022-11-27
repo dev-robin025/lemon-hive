@@ -1,5 +1,6 @@
 interface TProps {
   children: JSX.Element[] | JSX.Element | String;
+  bold?: Boolean;
 }
 
 const H1 = ({ children }: TProps) => (
@@ -12,8 +13,14 @@ const H2 = ({ children }: TProps) => (
   <h2 className="text-[48px] text-dark leading-[58px] font-bold">{children}</h2>
 );
 
-const H3 = ({ children }: TProps) => (
-  <h2 className="text-[20px] leading-[40px] text-gray font-normal opacity-80">{children}</h2>
+const H3 = ({ children, bold }: TProps) => (
+  <h2
+    className={`text-[20px] leading-[40px] text-gray opacity-80 ${
+      bold ? "font-bold" : "font-normal"
+    }`}
+  >
+    {children}
+  </h2>
 );
 
 const H4 = ({ children }: TProps) => (

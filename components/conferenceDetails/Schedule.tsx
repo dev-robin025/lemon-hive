@@ -1,7 +1,47 @@
-const Schedule = () => {
+import Image from "next/image";
+import Typography from "../shared/Typography";
+
+interface ISchedule {
+  day: string;
+  location: {
+    name: string;
+    about: string;
+    image: {
+      url: string;
+    };
+    country: {
+      name: string;
+    };
+    city: string;
+    address: string;
+  };
+}
+
+interface ISchedules {
+  schedules: [ISchedule];
+}
+
+const Schedule = ({ schedules }: ISchedules) => {
   return (
-    <div>
-      <h1>This is schedule view</h1>
+    <div className="space-y-5">
+      {schedules.map(({ day, location: { about, address, city, country, image, name } }, key) => (
+        <div key={key} className="bg-white rounded-lg p-5 flex gap-5">
+          <div className="relative h-36 w-36 rounded-lg overflow-hidden">
+            <Image src={image.url} alt={address} layout="fill" />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center justify-between">
+              <Typography.H3 bold>{name}</Typography.H3>
+              <p className="text-[#0A142F] opacity-50">{day}</p>
+            </div>
+            <p className="text-[#0A142F] opacity-50">
+              {address + ", " + city + ", " + country.name}
+            </p>
+
+            <p className="text-[#0A142F] opacity-80">{about}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
