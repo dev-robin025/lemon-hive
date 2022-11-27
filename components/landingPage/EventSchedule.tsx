@@ -1,4 +1,6 @@
-import moment from "moment";
+import moment, { Moment } from "moment";
+import { useEffect, useState } from "react";
+import { TbPlayerTrackNext, TbPlayerTrackPrev } from "react-icons/tb";
 import getHours from "../../utils/getHours";
 import getWeek from "../../utils/getWeek";
 import Event from "./Event";
@@ -20,20 +22,49 @@ interface IProps {
 }
 
 const EventSchedule = ({ conferences }: IProps) => {
-  const week: moment.Moment[] = getWeek();
+  const [dateRange, setDateRange] = useState({
+    start: moment().startOf("week"),
+    end: moment().endOf("week"),
+  });
+  const [week, setWeek] = useState<Moment[]>([]);
   const hours: moment.Moment[] = getHours();
+
+  useEffect(() => {
+    const days: moment.Moment[] = getWeek(dateRange);
+    setWeek(days);
+  }, [dateRange]);
 
   return (
     <div className="mt-10">
-      <div className="grid grid-cols-8 text-center border border-b-0 border-[lightgray]">
-        <span className="border-r py-6 border-[lightgray]"></span>
+      <div className="grid grid-cols-8 text-center border border-b-0 border-r-0 border-[lightgray]">
+        <div className="border-r py-6 border-[lightgray] flex items-center justify-center gap-5 text-xl">
+          <TbPlayerTrackPrev
+            className="cursor-pointer"
+            onClick={() =>
+              setDateRange({
+                start: dateRange.start.subtract(1, "week"),
+                end: dateRange.end.subtract(1, "week"),
+              })
+            }
+          />
+          <TbPlayerTrackNext
+            className="cursor-pointer"
+            onClick={() =>
+              setDateRange({
+                start: dateRange.start.add(1, "week"),
+                end: dateRange.end.add(1, "week"),
+              })
+            }
+          />
+        </div>
         {week.map((day, index) => (
-          <span
+          <div
             key={index}
-            className="flex items-center justify-center text-xl font-bold text-dark"
+            className="flex flex-col items-center justify-center border-r border-[lightgray] py-1"
           >
-            {day.format("ddd")}
-          </span>
+            <p className="text-xl font-bold text-dark">{day.format("DD/MM/YY")}</p>
+            <span>{day.format("ddd")}</span>
+          </div>
         ))}
       </div>
 
@@ -51,12 +82,11 @@ const EventSchedule = ({ conferences }: IProps) => {
               >
                 {conferences.map((con: IConference) =>
                   con.schedules.map((shd, key) => {
-                    const conDay: String = moment(shd.day).format("ddd");
                     return (
                       <Event
                         id={con.id}
                         title={con.name}
-                        scheduleDay={conDay}
+                        scheduleDay={shd.day}
                         timeSlot={shd.intervals}
                         calHour={hour}
                         calDay={day}

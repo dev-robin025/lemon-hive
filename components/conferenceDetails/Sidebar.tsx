@@ -1,21 +1,23 @@
-import { useState } from "react";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
 import { FaHandshake } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { SlOrganization } from "react-icons/sl";
 
+interface IProps {
+  activeNav: String;
+  setActiveNav: (id: String) => void;
+}
+
 const navigators = [
-  { id: "1", label: "Speakers ", icon: <FiUsers /> },
-  { id: "5", label: "Organizer", icon: <SlOrganization /> },
-  { id: "2", label: "Location ", icon: <BiCurrentLocation /> },
-  { id: "3", label: "Schedule", icon: <AiOutlineSchedule /> },
-  { id: "4", label: "Sponsors", icon: <FaHandshake /> },
+  { id: "speakers", label: "Speakers ", icon: <FiUsers /> },
+  { id: "organizer", label: "Organizer", icon: <SlOrganization /> },
+  { id: "location", label: "Location ", icon: <BiCurrentLocation /> },
+  { id: "schedule", label: "Schedule", icon: <AiOutlineSchedule /> },
+  { id: "sponsors", label: "Sponsors", icon: <FaHandshake /> },
 ];
 
-const Sidebar = () => {
-  const [activeNav, setActiveNav] = useState("1");
-
+const Sidebar = ({ setActiveNav, activeNav }: IProps) => {
   return (
     <div className="w-[365px] tablet:w-full">
       <div className="space-y-5">
@@ -23,7 +25,9 @@ const Sidebar = () => {
           <div key={item.id} onClick={() => setActiveNav(item.id)} className="space-y-3 ">
             <div
               className={`p-3 rounded-lg cursor-pointer flex items-center gap-5 text-xl font-bold ${
-                activeNav === item.id ? "bg-primary text-white shadow-md" : "border shadow"
+                activeNav === item.id
+                  ? "bg-primary text-white shadow-lg"
+                  : "border border-[#ECECEC] shadow-md"
               }`}
             >
               <span

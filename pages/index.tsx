@@ -1,15 +1,13 @@
+import { useQuery } from "@apollo/client";
 import { NextPage } from "next";
 import Head from "next/head";
-import { useQuery } from "react-query";
 import EventSchedule from "../components/landingPage/EventSchedule";
 import HeroSection from "../components/landingPage/HeroSection";
 import Typography from "../components/shared/Typography";
-import { getConferences } from "../services/fetchConferences";
+import FETCH_CONFERENCES from "../services/conferences.service";
 
 const Home: NextPage = () => {
-  const { isLoading, data, error } = useQuery("conferences", () => getConferences());
-
-  // console.log(isLoading, data, error);
+  const { loading, data, error } = useQuery(FETCH_CONFERENCES);
 
   return (
     <div>
@@ -19,7 +17,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {isLoading ? (
+      {loading ? (
         <div className="h-screen flex items-center justify-center">PLease Wait...</div>
       ) : (
         <div>

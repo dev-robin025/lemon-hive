@@ -1,15 +1,21 @@
-import moment from "moment";
+import { Moment } from "moment";
 
-const getWeek = () => {
-  let start: moment.Moment = moment().startOf("isoWeek");
-  const end: moment.Moment = moment().endOf("isoWeek");
+interface IRange {
+  start: Moment;
+  end: Moment;
+}
 
-  let days: moment.Moment[] | undefined = [];
+const getWeek = (range: IRange) => {
+  let firstDay: Moment = range.start.clone();
+  const lastDay: Moment = range.end.clone();
 
-  while (start.isBefore(end)) {
-    days.push(start.clone());
-    start = start.add(1, "day");
+  let days: Moment[] = [];
+
+  while (firstDay.isBefore(lastDay)) {
+    days.push(firstDay.clone());
+    firstDay = firstDay.add(1, "day");
   }
+
   return days;
 };
 
