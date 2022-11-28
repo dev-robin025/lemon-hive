@@ -1,4 +1,4 @@
-## React Conference [Click here to see live]()
+## React Conference [Click here to see live](https://lemon-hive-jade.vercel.app/)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with `TypeScript`.
 Used technologies and tools are mentioned below:
