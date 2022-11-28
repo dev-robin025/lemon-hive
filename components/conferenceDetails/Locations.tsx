@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { FC } from "react";
 import { ILocation } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
 interface ILocations {
   locations: [ILocation];
 }
 
-const Locations = ({ locations }: ILocations) => (
+const Locations: FC<ILocations> = ({ locations }) => (
   <div className="space-y-5">
     {locations.map(({ about, address, city, country, image }, key) => (
       <div key={key} className="bg-white rounded-lg p-5 flex gap-5">

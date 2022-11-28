@@ -1,8 +1,9 @@
 import moment from "moment";
 import Link from "next/link";
+import { FC } from "react";
 import IEvent from "../../interfaces/EVENT";
 
-const Event = ({ id, title, scheduleDay, timeSlot, calHour, calDay }: IEvent) => {
+const Event: FC<IEvent> = ({ id, title, scheduleDay, timeSlot, calHour, calDay }) => {
   const calenderHr: String = calHour.format("HH:mm");
   const calenderDay: String = calDay.format("YYYY-MM-DD");
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FC } from "react";
 import { ISponsor } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
 
@@ -6,7 +7,7 @@ interface ISponsors {
   sponsors: [ISponsor];
 }
 
-const Sponsors = ({ sponsors }: ISponsors) => (
+const Sponsors: FC<ISponsors> = ({ sponsors }) => (
   <div className="space-y-5">
     {sponsors.map(({ name, aboutShort, image, location }, key) => (
       <div key={key} className="bg-white rounded-lg p-5 flex gap-5">

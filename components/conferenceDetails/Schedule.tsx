@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FC } from "react";
 import { ISchedule } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
 
@@ -6,7 +7,7 @@ interface ISchedules {
   schedules: [ISchedule];
 }
 
-const Schedule = ({ schedules }: ISchedules) => {
+const Schedule: FC<ISchedules> = ({ schedules }) => {
   return (
     <div className="space-y-5">
       {schedules.map(({ day, location: { about, address, city, country, image, name } }, key) => (

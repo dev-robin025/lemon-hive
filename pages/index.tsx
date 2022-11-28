@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       ) : (
         <div>
           <HeroSection />
-          <section className="px-32 py-20">
+          <section className="px-32 py-20 tablet:px-20 mobile:px-10">
             <Typography.H2>Event Schedule</Typography.H2>
             <Typography.H3>
               Lorem uis diam turpis quam id fermentum.In quis diam turpis quam id fermentum.
