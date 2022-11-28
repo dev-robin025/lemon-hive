@@ -1,5 +1,5 @@
 import update from "immutability-helper";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { AiOutlineSchedule } from "react-icons/ai";
@@ -37,6 +37,11 @@ const navigators = [
 
 const Sidebar: FC<IProps> = ({ setActiveNav, activeNav, conference }) => {
   const [navItems, setNavItems] = useState<INavItem[]>(navigators);
+  const [screenSize, setScreenSize] = useState<Number>(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setScreenSize(window.innerWidth));
+  }, []);
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     setNavItems((navItems: INavItem[]) =>
@@ -54,7 +59,11 @@ const Sidebar: FC<IProps> = ({ setActiveNav, activeNav, conference }) => {
       return (
         <NavItem key={navItem.id} index={index} id={navItem.id} moveCard={moveCard}>
           <div
-            onClick={() => setActiveNav(activeNav === navItem.id ? "" : navItem.id)}
+            onClick={() =>
+              screenSize <= 768 && activeNav === navItem.id
+                ? setActiveNav("")
+                : setActiveNav(navItem.id)
+            }
             className="space-y-3 "
           >
             <div

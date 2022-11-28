@@ -5,11 +5,11 @@ import Typography from "../shared/Typography";
 
 const HeroSection: FC = () => {
   return (
-    <section className="flex flex-wrap max-w-[1320px] mx-auto px-16 tablet:px-20 items-end py-20 tablet:py-14 tablet:gap-10 mobile:px-10">
-      <div className="relative w-2/3 pr-10 tablet:pr-0 tablet:w-full">
-        <div className="text-right">
+    <section className="flex flex-wrap max-w-[1320px] mx-auto px-16 tablet:px-20 items-end py-20 tablet:py-14 tablet:gap-10 mobile:px-10 relative">
+      <div className=" w-2/3 pr-10 tablet:pr-0 tablet:w-full">
+        <div className="text-right relative">
           <Typography.H1>
-            <span className="relative before:absolute before:-top-8 before:-left-12 tablet:before:-top-10 tablet:before:-left-14 before:w-full before:bg-[url('/crown-vector.png')] before:h-full before:bg-no-repeat mobile:before:-left-7 mobile:before:-top-6 mobile:before:bg-contain">
+            <span className="relative before:absolute before:-top-8 before:-z-10 before:-left-12 tablet:before:-top-10 tablet:before:-left-14 before:w-full before:bg-[url('/crown-vector.png')] before:h-full before:bg-no-repeat mobile:before:-left-7 mobile:before:-top-6 mobile:before:bg-contain">
               R
             </span>
             <span>eact </span>
@@ -38,6 +38,13 @@ const HeroSection: FC = () => {
           <Image src="/hero-01.png" alt="hero-image" fill />
         </div>
       </div>
+      <Image
+        src="/scroll-down.png"
+        alt=""
+        height={102}
+        width={22}
+        className="absolute bottom-0 left-1/2"
+      />
     </section>
   );
 };

@@ -51,6 +51,7 @@ const GET_CONFERENCE = gql`
       locations {
         address
         city
+        name
         about
         image {
           url

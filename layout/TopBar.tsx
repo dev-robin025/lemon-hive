@@ -7,8 +7,8 @@ const TopBar: FC = () => {
   return (
     <header className="w-full max-w-[1320px] py-4 mx-auto flex items-center justify-between px-32 tablet:px-16 mobile:px-10">
       <Link href="/">
-        <div className="relative">
-          <Image src="/logo-big.png" alt="Logo" width={136} height={63} />
+        <div className="relative h-11 w-36 tablet:h-9 tablet:w-32 mobile:h-7 mobile:w-24">
+          <Image src="/logo-big.png" alt="Logo" fill />
         </div>
       </Link>
       <nav className="tablet:hidden">

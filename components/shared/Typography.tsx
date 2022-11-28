@@ -28,7 +28,9 @@ const H3: FC<TProps> = ({ children, bold }) => (
 );
 
 const H4: FC<TProps> = ({ children }) => (
-  <h2 className="text-[16px] leading-[40px] text-gray font-normal opacity-80">{children}</h2>
+  <h2 className="text-[16px] leading-[40px] text-gray font-normal opacity-80 mobile:leading-[20px]">
+    {children}
+  </h2>
 );
 
 const H5: FC<TProps> = ({ children }) => (
