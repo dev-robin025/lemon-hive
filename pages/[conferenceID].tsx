@@ -21,6 +21,8 @@ const Conference: NextPage = () => {
     variables: { conferenceID },
   });
 
+  console.log(data?.conference.organizer);
+
   return (
     <div className="max-w-[1320px] mx-auto px-16 py-20">
       <Head>
@@ -38,7 +40,11 @@ const Conference: NextPage = () => {
           <Typography.H2>Conference info</Typography.H2>
           <Typography.H3>{data.conference.slogan}</Typography.H3>
           <section className="mt-10 flex gap-10 ">
-            <Sidebar setActiveNav={setActiveNav} activeNav={activeNav} />
+            <Sidebar
+              setActiveNav={setActiveNav}
+              activeNav={activeNav}
+              conference={data.conference}
+            />
 
             <div className="flex-1 bg-[url('/con-detail-bg.png')] p-10 rounded-lg tablet:hidden">
               {activeNav === "speakers" && <Speakers speakers={data?.conference?.speakers} />}

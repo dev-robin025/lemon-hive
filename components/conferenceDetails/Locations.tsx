@@ -1,18 +1,6 @@
 import Image from "next/image";
+import { ILocation } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
-
-interface ILocation {
-  address: string;
-  city: string;
-  about: string;
-  image: {
-    url: string;
-  };
-  country: {
-    name: string;
-  };
-}
-
 interface ILocations {
   locations: [ILocation];
 }
@@ -22,7 +10,7 @@ const Locations = ({ locations }: ILocations) => (
     {locations.map(({ about, address, city, country, image }, key) => (
       <div key={key} className="bg-white rounded-lg p-5 flex gap-5">
         <div className="relative h-36 w-36 rounded-lg overflow-hidden">
-          <Image src={image.url} alt={address} layout="fill" />
+          <Image src={image.url} alt={address} layout="fill" sizes="" />
         </div>
         <div className="flex-1 space-y-2">
           <div className="flex items-center justify-between">

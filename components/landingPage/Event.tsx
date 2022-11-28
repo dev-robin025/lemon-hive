@@ -1,16 +1,8 @@
-import moment, { Moment } from "moment";
+import moment from "moment";
 import Link from "next/link";
+import IEvent from "../../interfaces/EVENT";
 
-interface IConference {
-  id: String;
-  title: String;
-  scheduleDay: Date;
-  timeSlot: [{ begin: String; end: String }];
-  calHour: Moment;
-  calDay: Moment;
-}
-
-const Event = ({ id, title, scheduleDay, timeSlot, calHour, calDay }: IConference) => {
+const Event = ({ id, title, scheduleDay, timeSlot, calHour, calDay }: IEvent) => {
   const calenderHr: String = calHour.format("HH:mm");
   const calenderDay: String = calDay.format("YYYY-MM-DD");
 
@@ -26,7 +18,7 @@ const Event = ({ id, title, scheduleDay, timeSlot, calHour, calDay }: IConferenc
                   : "border-[#FCB12A] bg-[#fffcf7]"
               }`}
             >
-              <p className="text-base font-bold leading-5">{id}</p>
+              <p className="text-base font-bold leading-5">{title}</p>
               <time className="text-xs">
                 {begin}-{end}
               </time>

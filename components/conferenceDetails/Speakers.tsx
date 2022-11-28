@@ -1,23 +1,17 @@
 import Image from "next/image";
+import { ISpeaker } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
 
-interface ISpeaker {
-  name: string;
-  aboutShort: string;
-  image: {
-    url: string;
-  };
-}
-interface IProps {
+interface ISpeakers {
   speakers: [ISpeaker];
 }
 
-const Speakers = ({ speakers }: IProps) => (
+const Speakers = ({ speakers }: ISpeakers) => (
   <div className="space-y-5">
     {speakers.map(({ image, name, aboutShort }, key) => (
       <div key={key} className="bg-white rounded-lg p-5 flex gap-5">
         <div className="relative h-36 w-36 rounded-lg overflow-hidden">
-          <Image src={image.url} alt={name} layout="fill" />
+          <Image src={image.url} alt={name} layout="fill" sizes="" />
         </div>
         <div className="flex-1 space-y-2">
           <div className="flex items-center justify-between">

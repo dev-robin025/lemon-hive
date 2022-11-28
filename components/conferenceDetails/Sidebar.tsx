@@ -3,10 +3,17 @@ import { BiCurrentLocation } from "react-icons/bi";
 import { FaHandshake } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { SlOrganization } from "react-icons/sl";
+import IConference from "../../interfaces/conference";
+import Locations from "./Locations";
+import Organizer from "./Organizer";
+import Schedule from "./Schedule";
+import Speakers from "./Speakers";
+import Sponsors from "./Sponsors";
 
 interface IProps {
   activeNav: String;
   setActiveNav: (id: String) => void;
+  conference: IConference;
 }
 
 const navigators = [
@@ -17,7 +24,7 @@ const navigators = [
   { id: "sponsors", label: "Sponsors", icon: <FaHandshake /> },
 ];
 
-const Sidebar = ({ setActiveNav, activeNav }: IProps) => {
+const Sidebar = ({ setActiveNav, activeNav, conference }: IProps) => {
   return (
     <div className="w-[365px] tablet:w-full">
       <div className="space-y-5">
@@ -41,16 +48,11 @@ const Sidebar = ({ setActiveNav, activeNav }: IProps) => {
             </div>
             {item.id === activeNav ? (
               <div className="bg-[url('/con-detail-bg.png')] px-4 py-5 rounded-lg space-y-3 hidden tablet:block">
-                <div className="bg-white p-5 rounded-lg">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque numquam
-                  laudantium accusantium, libero voluptates eveniet, repudiandae nostrum corporis
-                  dolor.
-                </div>
-                <div className="bg-white p-5 rounded-lg">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque numquam
-                  laudantium accusantium, libero voluptates eveniet, repudiandae nostrum corporis
-                  dolor.
-                </div>
+                {activeNav === "speakers" && <Speakers speakers={conference?.speakers} />}
+                {activeNav === "organizer" && <Organizer organizer={conference.organizer} />}
+                {activeNav === "location" && <Locations locations={conference.locations} />}
+                {activeNav === "schedule" && <Schedule schedules={conference.schedules} />}
+                {activeNav === "sponsors" && <Sponsors sponsors={conference.sponsors} />}
               </div>
             ) : null}
           </div>

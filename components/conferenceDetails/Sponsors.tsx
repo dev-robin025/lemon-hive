@@ -1,19 +1,6 @@
 import Image from "next/image";
+import { ISponsor } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
-
-interface ISponsor {
-  name: string;
-  aboutShort: string;
-  location: {
-    city: string;
-    country: {
-      name: string;
-    };
-  };
-  image: {
-    url: string;
-  };
-}
 
 interface ISponsors {
   sponsors: [ISponsor];
@@ -24,7 +11,7 @@ const Sponsors = ({ sponsors }: ISponsors) => (
     {sponsors.map(({ name, aboutShort, image, location }, key) => (
       <div key={key} className="bg-white rounded-lg p-5 flex gap-5">
         <div className="relative h-36 w-36 rounded-lg overflow-hidden shadow-md">
-          <Image src={image.url} alt={name} layout="fill" />
+          <Image src={image.url} alt={name} layout="fill" sizes="" />
         </div>
         <div className="flex-1 space-y-2">
           <div className="flex items-center justify-between">

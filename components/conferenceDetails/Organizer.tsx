@@ -1,20 +1,15 @@
 import Image from "next/image";
+import { IOrganizer } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
 
-interface IOrganizer {
-  organizer: {
-    name: string;
-    about: string;
-    image: {
-      url: string;
-    };
-  };
+interface IProps {
+  organizer: IOrganizer;
 }
 
-const Organizer = ({ organizer: { name, about, image } }: IOrganizer) => (
+const Organizer = ({ organizer: { name, about, image } }: IProps) => (
   <div className="bg-white rounded-lg p-5 flex gap-5">
     <div className="relative h-36 w-36 rounded-lg overflow-hidden">
-      <Image src={image.url} alt={name} layout="fill" />
+      <Image src={image.url} alt={name} layout="fill" sizes="" />
     </div>
     <div className="flex-1">
       <Typography.H3 bold>{name}</Typography.H3>

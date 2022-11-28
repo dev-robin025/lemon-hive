@@ -1,21 +1,6 @@
 import Image from "next/image";
+import { ISchedule } from "../../interfaces/conference";
 import Typography from "../shared/Typography";
-
-interface ISchedule {
-  day: string;
-  location: {
-    name: string;
-    about: string;
-    image: {
-      url: string;
-    };
-    country: {
-      name: string;
-    };
-    city: string;
-    address: string;
-  };
-}
 
 interface ISchedules {
   schedules: [ISchedule];
@@ -27,7 +12,7 @@ const Schedule = ({ schedules }: ISchedules) => {
       {schedules.map(({ day, location: { about, address, city, country, image, name } }, key) => (
         <div key={key} className="bg-white rounded-lg p-5 flex gap-5">
           <div className="relative h-36 w-36 rounded-lg overflow-hidden">
-            <Image src={image.url} alt={address} layout="fill" />
+            <Image src={image.url} alt={address} layout="fill" sizes="" />
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between">
